@@ -7,10 +7,11 @@ import { Button } from "react-bootstrap";
 import WeatherView from "../../Components/Weather/WeatherView"
 import SpinnerPage from "../../Components/Spinners";
 
-const citysearch = () => {
+const Citysearch:React.FC = () => {
   const [cityName, setCityName] = useState<string>("");
-  const [weather, setWeather] = useState<{ [key: string]: any }>({});
+  const [weather, setWeather] = useState<{[key: string]: any }>({});
   const [loading, setLoading] = useState<boolean>(false);
+  
   const api_key = "d987b512cd513f5d8f09ad2a29104ce7";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${api_key}`;
 
@@ -60,13 +61,13 @@ const citysearch = () => {
             </div>
           </form>
         </div>
-        <div>{weather.main && <WeatherView data={weather} />}</div>
+        <div style={{marginTop:"15px"}}>{weather.main && <WeatherView data={weather} />}</div>
       </>
     );
   }
 };
 
-export default citysearch;
+export default Citysearch;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   return {

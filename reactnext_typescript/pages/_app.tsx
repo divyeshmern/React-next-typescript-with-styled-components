@@ -1,18 +1,24 @@
+import { FC } from "react";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import { NextPage } from "next";
+import { Provider } from "react-redux";
 import Layout from "../Components/Layout";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { wrapper } from "../redux/store";
 
-interface customPageProps {
-  // our props
-}
-
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp: NextPage<AppProps> = ({
+  Component,
+  pageProps,
+  ...rest
+}: AppProps) => {
+  const { store, props } = wrapper.useWrappedStore(rest);
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <Provider store={store}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Provider>
   );
-}
-
+};
 export default MyApp;

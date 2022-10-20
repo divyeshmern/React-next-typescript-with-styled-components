@@ -2,6 +2,13 @@ import React from "react";
 import { Image } from "react-bootstrap";
 import styles from "./weather.module.css";
 import moment from "moment";
+import {
+  CardContainer,
+  CardTitle,
+  CardRow,
+  CardLeft,
+  CardRight,
+} from "../../styles/WeatherView.style";
 
 interface weather {
   id: number;
@@ -17,48 +24,38 @@ interface weatherListProps {
 const WeatherView = ({ data }: weatherListProps) => {
   return (
     <>
-      <div className={styles.main}>
-        <p className={styles.header}>{data.name}</p>
-        <div className={styles.flex}>
-          <p className={styles.day}>
+      <CardContainer>
+        <CardTitle>{data.name}</CardTitle>
+        <CardRow>
+          <CardLeft>
             {moment().format("dddd")}, <span>{moment().format("LL")}</span>
-          </p>
+          </CardLeft>
           <Image
-            src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
+            src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`} alt="icon"
           />
-          <p className={styles.description}>
+          <CardRight>
             {data.weather[0].main}-{data.weather[0].description}
-          </p>
-        </div>
-
-        <div className={styles.flex}>
-          <p className={styles.temp}>Longitude: {data.coord.lon}</p>
-          <p className={styles.temp}>Latitude: {data.coord.lat} </p>
-        </div>
-
-        <div className={styles.flex}>
-          <p className={styles.temp}>Temprature: {data.main.temp} &deg;C</p>
-          <p className={styles.temp}>Humidity: {data.main.humidity} %</p>
-        </div>
-
-        <div className={styles.flex}>
-          <p className={styles.temp}>Wind deg:{data.wind.deg}</p>
-          <p className={styles.temp}>
-            Wind Speed: {data.wind.speed.toFixed(0)}
-          </p>
-        </div>
-
-        <div className={styles.flex}>
-          <p className={styles.sunrisesunset}>
+          </CardRight>
+        </CardRow>
+        <CardRow>
+          <CardLeft>Longitude : {data.coord.lon}</CardLeft>
+          <CardRight>Latitude : {data.coord.lat}</CardRight>
+        </CardRow>
+        <CardRow>
+          <CardLeft>Temprature : {data.main.temp} &deg;C</CardLeft>
+          <CardRight>Humidity : {data.main.humidity} %</CardRight>
+        </CardRow>
+        <CardRow>
+          <CardLeft>
             Sunrise:{" "}
             {new Date(data.sys.sunrise * 1000).toLocaleTimeString("en-IN")}
-          </p>
-          <p className={styles.sunrisesunset}>
+          </CardLeft>
+          <CardRight>
             Sunset:{" "}
             {new Date(data.sys.sunset * 1000).toLocaleTimeString("en-IN")}
-          </p>
-        </div>
-      </div>
+          </CardRight>
+        </CardRow>
+      </CardContainer>
     </>
   );
 };

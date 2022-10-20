@@ -38,16 +38,6 @@ const Home: NextPage = () => {
           <Input type="text" defaultValue="hello"></Input>
         </InnerWrapper>
       </Wrapper>
-
-      {/* <Link href="/post/postlist">
-          <a style={{ textDecoration: "underline" }}>Post List page</a>
-        </Link>
-        &nbsp;
-        <Link href="/weather/citylist">
-          <a style={{ textDecoration: "underline" }}>
-            Check Weather with City wise
-          </a>
-        </Link>  */}
     </>
   );
 };

@@ -30,6 +30,9 @@ const Navbar = () => {
           <Link href="/weather/citysearch" passHref>
             <Nav.Link>Search weather</Nav.Link>
           </Link>
+          <Link href="/todos" passHref>
+            <Nav.Link>Todos</Nav.Link>
+          </Link>
         </Nav>
         <Button variant="outline-primary" className="rounded">
           Cart
